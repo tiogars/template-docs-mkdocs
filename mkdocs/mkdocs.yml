@@ -1,0 +1,165 @@
+site_name: Task Management
+site_url: https://docs.template.tiogars.fr
+repo_name: tiogars/template-java-solution
+repo_url: https://github.com/tiogars/template-java-solution
+edit_uri: edit/main/docs/src/
+site_description: Documentation for task management with reusable tags and hierarchical nomenclatures.
+site_author: Tiogars
+copyright: © 2026, Tiogars
+docs_dir: ../src
+site_dir: ../../site_output
+hooks:
+  - hooks.py
+nav:
+  - Home: index.md
+  - Architecture: architecture.md
+  - API: api.md
+  - Web Console: web-console.md
+  - Deployment: deployment.md
+  - Recommended Copilot Skills: copilot-skills.md
+theme:
+  # name: readthedocs
+  favicon: assets/images/favicon.png
+  icon:
+    repo: fontawesome/brands/github
+  name: material
+  custom_dir: overrides
+  features:
+    - navigation.sections
+    - content.action.edit
+    - content.action.view
+  highlightjs: true
+  palette:
+    # Palette toggle for automatic mode
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/brightness-auto
+        name: Switch to light mode
+
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default 
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to system preference
+plugins:
+  # https://squidfunk.github.io/mkdocs-material/setup/setting-up-site-search/?h=search#configuration
+  - search:
+
+
+  # https://pypi.org/project/mkdocs-slides/
+  - slides:
+
+  # https://pypi.org/project/mkdocs-include-markdown-plugin/
+  - include-markdown:
+
+  # https://pypi.org/project/mkdocs-kroki-plugin/
+  - kroki:
+      server_url: 'https://kroki.tiogars.fr'
+      fence_prefix: 'kroki-'
+      enable_block_diag: true
+      enable_bpmn: true
+      enable_excalidraw: true
+      enable_mermaid: true
+      fail_fast: true
+      http_method: POST
+      file_types:
+        - png
+        - svg
+      file_type_overrides:
+        nwdiag: svg
+        mermaid: png
+ 
+  - macros:
+
+  # https://mkdocs-to-pdf.readthedocs.io/en/latest/
+  # https://mkdocs-to-pdf.readthedocs.io/en/stable/installation/#weasyprint
+  - to-pdf:
+      author: Tiogars
+      copyright: Copyright © Tiogars 2026
+
+      custom_template_path: templates
+
+      cover: true
+      cover_title: Task Management
+      cover_subtitle: Documentation
+      cover_logo: assets/images/favicon.png
+      back_cover: true
+
+      toc_title: "Table of Contents"
+      toc_level: 3
+      ordered_chapter_level: 3
+      heading_shift: true
+      
+      output_path: fr.tiogars.template.pdf
+      html_path: single.html
+
+      debug_html: false
+      verbose: false
+
+  # https://pypi.org/project/mkdocs-page-pdf/
+  # - page-to-pdf: # Should be last to ensure all content is rendered
+
+  #https://pypi.org/project/mkdocs-print-site-plugin/
+  - print-site:
+      add_to_navigation: true
+      print_page_title: 'Print Site'
+      print_page_basename: 'print_page'
+      add_print_site_banner: true
+      # Table of contents
+      add_table_of_contents: true
+      toc_title: 'Table of Contents'
+      toc_depth: 6
+      # Content-related
+      add_full_urls: true
+      enumerate_headings: true
+      enumerate_figures: true
+      add_cover_page: true
+      cover_page_template: ""
+      path_to_pdf: "fr.tiogars.template.pdf"
+      include_css: true
+      enabled: true
+      exclude: ["slides"]
+
+markdown_extensions:
+  - admonition
+  - abbr
+  - attr_list
+  - def_list
+  - footnotes
+  - meta
+  - md_in_html
+  - toc:
+      permalink: true
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.highlight:
+      # Code-line links are not preserved by the PDF plugin.
+      anchor_linenums: false
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.keys
+  - pymdownx.magiclink:
+      repo_url_shorthand: true
+      user: squidfunk
+      repo: mkdocs-material
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.snippets
+  - pymdownx.superfences:
+  - pymdownx.tabbed
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
